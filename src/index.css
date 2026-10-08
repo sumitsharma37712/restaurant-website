@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap");
+@import "tailwindcss";
+
+:root {
+  font-family: "DM Sans", sans-serif;
+  color: #f8efe3;
+  background: #160d0d;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --ink: #160d0d;
+  --paper: #f5ecdf;
+  --cream: #f8efe3;
+  --gold: #e3b873;
+  --terracotta: #9b4c3d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: var(--ink);
+}
+
+button,
+a,
+input,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.font-serif {
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+::selection {
+  color: var(--ink);
+  background: var(--gold);
+}
+
+.noise {
+  position: relative;
+}
+
+.noise::after {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  content: "";
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+}
+
+.section-shell {
+  position: relative;
+  isolation: isolate;
+}
+
+.section-shell::before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: -1;
+  width: min(90vw, 1180px);
+  height: 1px;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(227, 184, 115, 0.45), transparent);
+  transform: translateX(-50%);
+}
+
+.display-line {
+  text-wrap: balance;
+}
+
+.image-frame {
+  position: relative;
+}
+
+.image-frame::after {
+  position: absolute;
+  inset: 12px;
+  z-index: 1;
+  pointer-events: none;
+  content: "";
+  border: 1px solid rgba(227, 184, 115, 0.35);
+  border-radius: inherit;
+}
+
+.marquee-track {
+  width: max-content;
+  animation: marquee 24s linear infinite;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
